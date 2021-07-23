@@ -14,5 +14,6 @@ module.exports = {
       .set('plugins', resolve('./src/plugins'))
       .set('comps', resolve('./src/components'))
       .set('styles', resolve('./src/styles'))
+      .set('directives', resolve('./src/directives'))
   }
 }

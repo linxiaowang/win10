@@ -5,7 +5,8 @@
       :class="{ active: activeMenu === menu.name }"
       v-for="menu in menuList"
       :key="menu.name"
-      @click="selectMenu(menu)"
+      @click.stop="selectMenu(menu)"
+      v-clickoutside="handleMenuOutsideClick"
     >
       <img class="w-menu-item__img" :src="menu.icon" :alt="menu.name" />
       <div class="w-menu-item__name">{{ menu.name }}</div>
@@ -14,6 +15,8 @@
 </template>
 
 <script>
+import { mapState, mapMutations } from 'vuex'
+import clickoutside from 'directives/clickoutside.js'
 export default {
   data () {
     return {
@@ -22,14 +25,25 @@ export default {
           name: 'chrome',
           icon: require('assets/imgs/icon-chrome.png')
         }
-      ],
-      activeMenu: ''
+      ]
     }
   },
 
+  directives: {
+    clickoutside
+  },
+
+  computed: {
+    ...mapState(['activeMenu'])
+  },
+
   methods: {
+    ...mapMutations(['setActiveMenu']),
     selectMenu (menu) {
-      this.activeMenu = menu.name === this.activeMenu ? '' : menu.name
+      this.setActiveMenu(menu.name)
+    },
+    handleMenuOutsideClick () {
+      this.setActiveMenu('')
     }
   }
 }
