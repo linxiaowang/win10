@@ -12,7 +12,7 @@ module.exports = {
       .set('store', resolve('./src/store'))
       .set('router', resolve('./src/router'))
       .set('plugins', resolve('./src/plugins'))
-      .set('comp', resolve('./src/components'))
+      .set('comps', resolve('./src/components'))
       .set('styles', resolve('./src/styles'))
   }
 }
