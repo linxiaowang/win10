@@ -64,12 +64,16 @@ export default {
 
 <style lang="less" scoped>
 .w-menu {
+  position: absolute;
+  left: 30px;
+  top: 30px;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  margin: 30px 0 0 30px;
+  // margin: 30px 0 0 30px;
 
   &-item {
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
