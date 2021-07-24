@@ -6,7 +6,10 @@
       v-for="menu in menuList"
       :key="menu.name"
       @click.stop="selectMenu(menu)"
+      @dblclick="openApp(menu)"
+      :title="menu.title"
       v-clickoutside="handleMenuOutsideClick"
+      v-drag
     >
       <img class="w-menu-item__img" :src="menu.icon" :alt="menu.name" />
       <div class="w-menu-item__name">{{ menu.name }}</div>
@@ -17,6 +20,7 @@
 <script>
 import { mapState, mapMutations } from 'vuex'
 import clickoutside from 'directives/clickoutside.js'
+import drag from 'directives/drag.js'
 export default {
   data () {
     return {
@@ -30,20 +34,29 @@ export default {
   },
 
   directives: {
-    clickoutside
+    clickoutside,
+    drag
   },
 
   computed: {
-    ...mapState(['activeMenu'])
+    ...mapState(['activeMenu', 'taskList'])
   },
 
   methods: {
-    ...mapMutations(['setActiveMenu']),
+    ...mapMutations(['setActiveMenu', 'updateTaskList']),
     selectMenu (menu) {
       this.setActiveMenu(menu.name)
     },
     handleMenuOutsideClick () {
       this.setActiveMenu('')
+    },
+    openApp (menu) {
+      const isTaskExist = this.taskList.some(item => {
+        return item.name === menu.name
+      })
+      if (!isTaskExist) {
+        this.updateTaskList([...this.taskList, menu])
+      }
     }
   }
 }

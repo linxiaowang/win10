@@ -7,10 +7,14 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     taskList: [
-      {
-        name: 'chrome',
-        icon: require('assets/imgs/icon-chrome.png')
-      }
+      // {
+      //   name: 'chrome',
+      //   icon: require('assets/imgs/icon-chrome.png')
+      // },
+      // {
+      //   name: '微信',
+      //   icon: require('assets/imgs/icon-wx.png')
+      // }
     ],
     activeMenu: ''
   },
