@@ -9,7 +9,6 @@
       @dblclick="openApp(menu)"
       :title="menu.title"
       v-clickoutside="handleMenuOutsideClick"
-      v-drag
     >
       <img class="w-menu-item__img" :src="menu.icon" :alt="menu.name" />
       <div class="w-menu-item__name">{{ menu.name }}</div>
@@ -20,7 +19,6 @@
 <script>
 import { mapState, mapMutations } from 'vuex'
 import clickoutside from 'directives/clickoutside.js'
-import drag from 'directives/drag.js'
 export default {
   data () {
     return {
@@ -34,8 +32,7 @@ export default {
   },
 
   directives: {
-    clickoutside,
-    drag
+    clickoutside
   },
 
   computed: {
