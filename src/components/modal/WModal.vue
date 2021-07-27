@@ -1,10 +1,11 @@
 <template>
   <vue-draggable-resizable
-    :w="w"
-    :h="w"
+    :min-width="300"
+    :min-height="200"
     @dragging="onDrag"
-    @resizing="onResize"
     :parent="true"
+    drag-cancel=".no-drag"
+    style="position: absolute"
   >
     <slot></slot>
   </vue-draggable-resizable>
@@ -12,18 +13,26 @@
 
 <script>
 import VueDraggableResizable from 'vue-draggable-resizable'
-
+// import 'vue-draggable-resizable/dist/VueDraggableResizable.css'
 export default {
   components: {
     VueDraggableResizable
   },
 
   props: {
-    width: {
+    w: {
       type: Number,
       default: 100
     },
-    height: {
+    h: {
+      type: Number,
+      default: 100
+    },
+    x: {
+      type: Number,
+      default: 100
+    },
+    y: {
       type: Number,
       default: 100
     }
@@ -33,8 +42,8 @@ export default {
     onResize: function (x, y, width, height) {
       this.$emit('update:x', x)
       this.$emit('update:y', y)
-      this.$emit('update:width', width)
-      this.$emit('update:height', height)
+      this.$emit('update:w', width)
+      this.$emit('update:h', height)
     },
     onDrag: function (x, y) {
       this.$emit('update:x', x)
@@ -45,4 +54,8 @@ export default {
 </script>
 
 <style lang="less" scoped>
+.example {
+  width: 100%;
+  height: 100%;
+}
 </style>

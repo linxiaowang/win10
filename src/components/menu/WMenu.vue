@@ -2,7 +2,7 @@
   <div class="w-menu">
     <div
       class="w-menu-item"
-      :class="{ active: activeMenu === menu.name }"
+      :class="{ active: activeApp === menu.name }"
       v-for="menu in menuList"
       :key="menu.name"
       @click.stop="selectMenu(menu)"
@@ -25,9 +25,28 @@ export default {
       menuList: [
         {
           name: 'chrome',
-          icon: require('assets/imgs/icon-chrome.png')
+          tag: 'WChrome',
+          icon: require('assets/imgs/icon-chrome.png'),
+          width: 800,
+          height: 300,
+          x: 300,
+          y: 300,
+          active: false,
+          isOpen: false
+        },
+        {
+          name: 'notepad',
+          tag: 'WNotepad',
+          icon: require('assets/imgs/icon-notepad.png'),
+          width: 800,
+          height: 300,
+          x: 300,
+          y: 300,
+          active: false,
+          isOpen: false
         }
-      ]
+      ],
+      activeApp: ''
     }
   },
 
@@ -36,23 +55,35 @@ export default {
   },
 
   computed: {
-    ...mapState(['activeMenu', 'taskList'])
+    ...mapState(['taskList'])
   },
 
   methods: {
     ...mapMutations(['setActiveMenu', 'updateTaskList']),
     selectMenu (menu) {
-      this.setActiveMenu(menu.name)
+      this.activeApp = menu.name
     },
     handleMenuOutsideClick () {
-      this.setActiveMenu('')
+      this.activeApp = ''
     },
     openApp (menu) {
-      const isTaskExist = this.taskList.some(item => {
-        return item.name === menu.name
+      console.log(menu)
+      let isTaskExist = false
+      const taskList = this.taskList.map(item => {
+        if (item.name === menu.name) {
+          isTaskExist = true
+        }
+        item.active = item.name === menu.name
+        return item
       })
+      if (isTaskExist) {
+        this.updateTaskList(taskList)
+      }
       if (!isTaskExist) {
-        this.updateTaskList([...this.taskList, menu])
+        menu.active = menu.isOpen = true
+        this.setActiveMenu(menu.name)
+        taskList.push(menu)
+        this.updateTaskList(taskList)
       }
     }
   }

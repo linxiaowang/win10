@@ -1,7 +1,5 @@
 <template>
-  <svg class="icon" aria-hidden="true">
-    <use :xlink:href="icon"></use>
-  </svg>
+  <i class="iconfont" :class="`icon-${icon}`" :style="{fontSize: `${size}px`, color: color}"></i>
 </template>
 
 <script>
@@ -11,6 +9,14 @@ export default {
     type: {
       type: String,
       default: ''
+    },
+    size: {
+      type: Number,
+      default: 14
+    },
+    color: {
+      type: String,
+      default: '#333'
     }
   },
   computed: {
