@@ -32,7 +32,8 @@ export default {
           x: 300,
           y: 300,
           active: false,
-          isOpen: false
+          isOpen: false,
+          isFullScreen: false
         },
         {
           name: 'notepad',
@@ -43,7 +44,8 @@ export default {
           x: 300,
           y: 300,
           active: false,
-          isOpen: false
+          isOpen: false,
+          isFullScreen: false
         }
       ],
       activeApp: ''
@@ -67,13 +69,12 @@ export default {
       this.activeApp = ''
     },
     openApp (menu) {
-      console.log(menu)
       let isTaskExist = false
       const taskList = this.taskList.map(item => {
         if (item.name === menu.name) {
           isTaskExist = true
         }
-        item.active = item.name === menu.name
+        item.isOpen = item.active = item.name === menu.name
         return item
       })
       if (isTaskExist) {

@@ -2,6 +2,8 @@
   <vue-draggable-resizable
     :min-width="300"
     :min-height="200"
+    :w="w"
+    :h="h"
     @dragging="onDrag"
     :parent="true"
     drag-cancel=".no-drag"
@@ -22,11 +24,11 @@ export default {
   props: {
     w: {
       type: Number,
-      default: 100
+      default: 300
     },
     h: {
       type: Number,
-      default: 100
+      default: 200
     },
     x: {
       type: Number,

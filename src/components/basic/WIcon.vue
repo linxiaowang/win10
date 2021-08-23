@@ -1,5 +1,5 @@
 <template>
-  <i class="iconfont" :class="`icon-${icon}`" :style="{fontSize: `${size}px`, color: color}"></i>
+  <i class="iconfont" :class="`icon-${icon}`" :style="{fontSize: `${size}px`}"></i>
 </template>
 
 <script>
@@ -21,7 +21,7 @@ export default {
   },
   computed: {
     icon () {
-      return '#icon-' + this.type
+      return this.type
     }
   }
 }
