@@ -38,7 +38,6 @@ export default {
       const taskList = this.taskList
       const { active } = taskList[index]
       taskList[index].isOpen = taskList[index].active = !active
-      console.log(index)
       this.$store.commit('updateTaskList', taskList)
     }
   }

@@ -1,14 +1,14 @@
 <template>
-  <div class="w-header">
+  <div class="w-header" @dblclick.stop="maximize">
     <div class="w-header__left">无标题 - 记事本</div>
     <div class="w-header__right">
-      <div class="w-header__right-item" @click="minimize">
+      <div class="w-header__right-item" @click.stop="minimize">
         <w-icon type="zuixiaohua"></w-icon>
       </div>
-      <div class="w-header__right-item">
+      <div class="w-header__right-item" @click.stop="maximize">
         <w-icon type="maximize"></w-icon>
       </div>
-      <div class="w-header__right-item close" @click="closeApp">
+      <div class="w-header__right-item close" @click.stop="closeApp">
         <w-icon type="close"></w-icon>
       </div>
     </div>
@@ -21,22 +21,15 @@ export default {
   components: {
     WIcon
   },
-  computed: {
-    taskList: {
-      get () {
-        return this.$store.state.taskList
-      },
-      set (val) {
-        this.$store.commit('updateTaskList', val)
-      }
-    }
-  },
   methods: {
     minimize () {
       this.$emit('minimize')
     },
     closeApp () {
       this.$emit('close')
+    },
+    maximize () {
+      this.$emit('maximize')
     }
   }
 }

@@ -12,12 +12,13 @@ export default {
 
 <style lang="less" scoped>
 .input-wrapper {
+    height: 100%;
     border-top: 1px solid #f2f2f2;
 }
 .note-input {
     box-sizing: border-box;
     width: 100%;
-    min-height: 200px;
+    height: 100%;
     border: 0;
     outline: none;
     padding: 5px;

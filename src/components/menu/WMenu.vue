@@ -33,7 +33,7 @@ export default {
           y: 300,
           active: false,
           isOpen: false,
-          isFullScreen: false
+          fullScreen: false
         },
         {
           name: 'notepad',
@@ -45,7 +45,7 @@ export default {
           y: 300,
           active: false,
           isOpen: false,
-          isFullScreen: false
+          fullScreen: false
         }
       ],
       activeApp: ''
@@ -79,8 +79,7 @@ export default {
       })
       if (isTaskExist) {
         this.updateTaskList(taskList)
-      }
-      if (!isTaskExist) {
+      } else {
         menu.active = menu.isOpen = true
         this.setActiveMenu(menu.name)
         taskList.push(menu)

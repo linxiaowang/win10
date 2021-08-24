@@ -1,7 +1,7 @@
 <template>
   <w-modal v-show="appData.isOpen" :data="appData" class>
-    <w-note-header @minimize="minimize" @close="close"></w-note-header>
-    <div class="no-drag">
+    <w-note-header @minimize="minimize" @maximize="maximize" @close="close"></w-note-header>
+    <div class="no-drag note-content">
       <w-note-content></w-note-content>
     </div>
   </w-modal>
@@ -26,16 +26,22 @@ export default {
     }
   },
   methods: {
-    ...mapMutations(['minizeWindow', 'closeWindow']),
+    ...mapMutations(['minizeWindow', 'closeWindow', 'maximizeWindow']),
     minimize () {
       this.minizeWindow(this.appData)
     },
     close () {
       this.closeWindow(this.appData)
+    },
+    maximize () {
+      this.maximizeWindow(this.appData)
     }
   }
 }
 </script>
 
 <style lang="less" scoped>
+.note-content {
+  height: calc(100% - 40px);
+}
 </style>
